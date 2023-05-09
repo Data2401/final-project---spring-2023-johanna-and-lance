@@ -19,12 +19,12 @@ knitr::opts_chunk$set(echo = TRUE)
 
 One of the most popular topics in the entertainment industry are movies, especially when it flares a debate on how the movies should be ranked. These conversations can be supported with genre, successful directors, and even just personal bias. In the data, we analyze the top 250 movies on IMDB and what patterns and trends lie among the variables. This data set was created 2 months ago with the intention of allowing others to access it and "...do a lot of things as mentioned below
 
-- Dataset Walkthrough
-- Understanding Dataset Hierarchy
-- Data Preprocessing
-- Exploratory Data Analysis
-- Data Visualization
-- Making Recommendation System
+-   Dataset Walkthrough
+-   Understanding Dataset Hierarchy
+-   Data Preprocessing
+-   Exploratory Data Analysis
+-   Data Visualization
+-   Making Recommendation System
 
 This is a list of some of that things that you can do on this dataset. It's not definitely limited to the one that is mentioned there but a lot more other things can also be done."
 
@@ -50,37 +50,38 @@ glimpse(imdb)
 
 ```
 
----
+------------------------------------------------------------------------
 
 ## Where Are The Keys?
+
 ### This is a list of all the variable names and what they are.
 
-- **rank - Movie Rank as per IMDB rating**
-- movie_id - Movie ID
-- **title - Name of the Movie**
-- **year - Year of Movie release**
-- link - URL for the Movie page in IMDB
-- imdb_votes - Number of people who voted for the IMDB rating
-- **imdb_rating - Rating of the Movie**
-- **certificate - Movie Certification**
-- duration - Duration of the Movie
-- **genre - Genre of the Movie**
-- cast_id - ID of the cast member who have worked on the Movie
-- cast_name - Name of the cast member who have worked on the Movie
-- director_id - ID of the director who have directed the Movie
-- **director_name - Name of the director who have directed the Movie**
-- writer_id - ID of the writer who have wrote script for the Movie
-- writer_name - Name of the writer who have wrote script for the Movie
-- storyline - Storyline of the Movie
-- user_id - ID of the user who wrote review for the Movie
-- user_name - Name of the user who wrote review for the Movie
-- review_id - ID of the user review
-- review_title - Short review
-- review_content - Long review
+-   **rank - Movie Rank as per IMDB rating**
+-   movie_id - Movie ID
+-   **title - Name of the Movie**
+-   **year - Year of Movie release**
+-   link - URL for the Movie page in IMDB
+-   imdb_votes - Number of people who voted for the IMDB rating
+-   **imdb_rating - Rating of the Movie**
+-   **certificate - Movie Certification**
+-   duration - Duration of the Movie
+-   **genre - Genre of the Movie**
+-   cast_id - ID of the cast member who have worked on the Movie
+-   cast_name - Name of the cast member who have worked on the Movie
+-   director_id - ID of the director who have directed the Movie
+-   **director_name - Name of the director who have directed the Movie**
+-   writer_id - ID of the writer who have wrote script for the Movie
+-   writer_name - Name of the writer who have wrote script for the Movie
+-   storyline - Storyline of the Movie
+-   user_id - ID of the user who wrote review for the Movie
+-   user_name - Name of the user who wrote review for the Movie
+-   review_id - ID of the user review
+-   review_title - Short review
+-   review_content - Long review
 
 As you can see, there are a lot of variables right now and some of it is difficult to use and would not help us with our main question so let's clean!
 
----
+------------------------------------------------------------------------
 
 ## Filtering
 
@@ -94,9 +95,10 @@ glimpse(imdb_1)
 
 Much better! Now that we have data that is more manageable, let's explore some questions that arise when viewing it!
 
----
+------------------------------------------------------------------------
 
 ## Questions? or Inquiries?
+
 **Main Question:**
 
 What are some key similarities and trends between the top 250 IMDB movies?
@@ -119,7 +121,7 @@ What were the best genres of movies?
 
 Who were the most successful directors?
 
----
+------------------------------------------------------------------------
 
 ## Top Tops?
 
@@ -146,8 +148,7 @@ imdb_b10 <- imdb_rt %>%
 
 ```
 
-
----
+------------------------------------------------------------------------
 
 ## Do You Like Them Older Or Newer?
 
@@ -206,10 +207,12 @@ And now let's graph!
 
 plottr <- ggplot(data = rankedecade, aes(x = year, y= rank)) +
   geom_point(shape=21, fill="rosybrown3", size=4) +
+  scale_y_reverse() +
   ggtitle("Did Time affect Ranking?")
 
 plottr2 <- ggplot(data = rankedecade2, aes(x = year, y= rank)) +
   geom_point(shape=21, fill="rosybrown3", size=4) +
+  scale_y_reverse() +
   ggtitle("Did Time affect Ranking?")
 
 ```
@@ -221,7 +224,7 @@ plottr + plottr2
 
 ```
 
----
+------------------------------------------------------------------------
 
 ## How Decade-nt
 
@@ -345,7 +348,7 @@ ggplot(data = ntable, aes(x = decades, y = n_movies)) +
 
 ```
 
---- 
+------------------------------------------------------------------------
 
 ## Ranking Over The Years
 
@@ -357,13 +360,14 @@ ggplot(data = imdb_1, aes(x = year, y = rank))+
   geom_point() + 
   geom_density2d() +
   geom_smooth() +
+  scale_y_reverse() +
   ggtitle("Dispersal of Ranking Over The Years")
 
 ```
 
 Looking at this graph we can notice two different things happening mainly, one, there was a sharp increase in average rank around the 1990s. Secondly, during the early 2000s there was both a high ranking density cluster as well as a low ranking density cluster, these clusters imply that there more many movies being made at that time as well as that their IMDB ranks were similarly high/low.
 
----
+------------------------------------------------------------------------
 
 ## Best Movie Award Goes To..
 
@@ -399,7 +403,7 @@ certified
 
 ## What's Your Type?
 
-Next let's look at genre, since there are many genres that only have one movie attached to it, a filter is used to remove the values were the frequency is less than 3, lets see what that looks like. 
+Next let's look at genre, since there are many genres that only have one movie attached to it, a filter is used to remove the values were the frequency is less than 3, lets see what that looks like.
 
 ```{r, include=FALSE}
 
@@ -431,7 +435,7 @@ genrep
 
 ```
 
----
+------------------------------------------------------------------------
 
 ## The GOATs
 
@@ -467,14 +471,14 @@ directp
 
 ```
 
----
+------------------------------------------------------------------------
 
 ## Summary
 
 After looking at our data set we were able to find trends and correlations between the best movies of all time based on IMDB. We used variables such as ratings, certificate, genre, and year of release to determine what factors played a role in the success of a movie. We were able to conclude that movies in the 1990's, R rated movies, and Dramas were much more likely to be included in this list.
 
-Some of the limitations that we experienced while working on this project that we could do further observations on include: using other databases such as rotten tomatoes and metascore, we could either expand our data to the top 500 movies or get information on the bottom 250 movies. 
+Some of the limitations that we experienced while working on this project that we could do further observations on include: using other databases such as rotten tomatoes and metascore, we could either expand our data to the top 500 movies or get information on the bottom 250 movies.
 
----
+------------------------------------------------------------------------
 
 The End :)
